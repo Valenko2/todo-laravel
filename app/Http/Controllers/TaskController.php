@@ -11,4 +11,18 @@ class TaskController extends Controller
     {
         return view('tasks');
     }
+
+    public function create()
+    {
+        request()->validate([
+            'title' => ['required', 'string', 'max:40'],
+            'desc' => ['required','string','min:5']
+        ]);
+        Task::create([
+            'title'=> request()->title,
+            'desc' => request()->desc,
+            'hard' => 2
+        ]);
+       return redirect('/task');
+    }
 }

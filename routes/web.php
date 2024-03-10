@@ -8,5 +8,7 @@ Route::get('/', function () {
     return "test";
 });
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index']);
+
 Route::get('/task', [TaskController::class, 'index']);
+Route::post('/task/create', [TaskController::class, 'create'])->name('task.create');
 
