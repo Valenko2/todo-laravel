@@ -8,8 +8,10 @@
     <title>Document</title>
 </head>
 @vite('resources/css/app.css')
-<h1 class="text-3xl font-bold underline">Header</h1>
+@vite('resources/js/app.js')
 <body>
+<div id="app">
     @yield('content')
+</div>
 </body>
 </html>
