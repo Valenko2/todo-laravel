@@ -1,22 +1,42 @@
+
 @extends('components.header')
 @section('content')
-<main>
-   <h2 class="text-5xl mt-10 text-center text-white m-5 ">Добавление вопроса</h2>
-    <div class="h-30 bg-slate-600 w-100  w-200 shadow-lg max-w-sm mx-auto flex items-center space-x-4 p-5">
-        <form action="{{route('task.create')}}" method="post" class="w-full">
-            @csrf
-            <input type="text" placeholder="Название" name="title" class=" {{$errors->has('title') ? 'placeholder-red-400' : 'placeholder-slate-500'}}" value="{{old(('title'))}}">
-            @error('title')
-                <label class="text-red-400 text-sm">{{$message}}</label>
-            @enderror
-            <input type="text" placeholder="Описание" name="desc" class=" {{$errors->has('desc') ? 'placeholder-red-400' : 'placeholder-slate-500'}}" value="{{old(('desc'))}}">
-            @error('desc')
-                <label class="text-red-400 text-sm">{{$message}}</label>
-            @enderror
-            <button class="bg-blue-600 text-white px-10 py-2 text w-full rounded-xl mt-5 transition-colors hover:bg-blue-700 font-bold" type="submit">Создать </button>
+    <h2 class="text-center text-3xl mt-5 mb-5">Мои задачи</h2>
+    @foreach($tasks as $task)
+            <div class="border-2 border-slate-700  h-32 w-full p-3 rounded-xl relative mt-3 " id="{{$task->id}}">
+                <h3 class="text-xl inline-block">{{$task->title}}</h3>
+                <a href="#" class="inline-block absolute top-4 right-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                         class="w-6 h-6 text-slate-400 hover:text-slate-200 transition-colors">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                    </svg>
+                </a>
+                <p class="text-slate-400 ">{{$task->desc}}</p>
+                <div class="mt-5 ">
+                    <button class="but" onclick="doneTask({{$task->id}})">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                             class="w-7 h-7 text-green-500 bg-green-800 text-xl rounded hover:bg-green-600 transition-colors">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                    </button>
+                    <a href="{{route('task.delete', $task->id)}}" class="whitespace-nowrap inline-block" >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                             class="w-7 h-7 text-red-500 bg-red-800 text-xl rounded hover:bg-red-600 transition-colors">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+    <script>
+        function doneTask(id) {
+            let div = document.getElementById(id);
 
-        </form>
-    </div>
-
-</main>
+            if(div.classList.contains('bg-green-400'))
+                div.classList.remove('bg-green-400', 'border-green-600')
+            else
+                div.classList.add('bg-green-400', 'border-green-600', 'transition-colors')
+        }
+    </script>
+    @endforeach
 @endsection
+

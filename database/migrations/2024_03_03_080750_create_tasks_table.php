@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamps();
             $table->index('category_id', 'task_category_idx');
             $table->foreign('category_id', 'task_category_fk')->on('categories')->references('id');
+            $table->softDeletes();
         });
     }
 

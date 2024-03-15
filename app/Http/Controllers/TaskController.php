@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return view('tasks');
+        return view('createTask');
     }
 
     public function create()
@@ -24,5 +24,11 @@ class TaskController extends Controller
             'hard' => 2
         ]);
        return redirect('/task');
+    }
+
+    public function delete(Task $task)
+    {
+        $task->delete();
+        return redirect('/');
     }
 }
