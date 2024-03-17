@@ -1,7 +1,7 @@
-@extends('components.header')
-@section('content')
+@extends('links.main')
+@section('main')
 <main>
-   <h2 class="text-5xl mt-10 text-center text-white m-5 ">Добавление вопроса</h2>
+   <h2 class="text-5xl mt-10 text-center text-white m-5 ">Добавление задачи</h2>
     <div class="h-30 bg-slate-600 w-100  w-200 shadow-lg max-w-sm mx-auto flex items-center space-x-4 p-5">
         <form action="{{route('task.create')}}" method="post" class="w-full">
             @csrf
