@@ -1,20 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use \App\Http\Controllers\TasksController;
 use App\Http\Controllers\CategoryController;
+Route::group(['namespace' => 'App\Http\Controllers\Task'], function ()
+{
+    Route::get('/', 'ViewController')->name('tasks');
 
-Route::get('/', [TasksController::class, 'index'])->name('tasks');
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/task', 'AddController')->name('task.add');
+    Route::post('/task/create', 'CreateController')->name('task.create');
 
-Route::get('/task', [TaskController::class, 'index'])->name('task.add');
-Route::post('/task/create', [TaskController::class, 'create'])->name('task.create');
+    Route::get('/{task}/delete', 'DeleteController')->name('task.delete');
 
-Route::get('/{task}/delete', [TaskController::class, 'delete'])->name('task.delete');
+    Route::get('/{task}/update', 'EditController')->name('task.edit');
+    Route::post('/{task}/task/update', 'UpdateController')->name('task.update');
 
-Route::get('/{task}/update', [TaskController::class, 'edit'])->name('task.edit');
-Route::post('/{task}/task/update', [TaskController::class, 'update'])->name('task.update');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+
+});
 
 
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+
