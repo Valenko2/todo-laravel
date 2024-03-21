@@ -5,7 +5,7 @@
             <ul class="header">
                 <li><a href="{{route('tasks')}}">Мои задачи</a></li>
                 <li><a href="{{route('categories')}}">Категории</a></li>
-                <li><a href="">Календарь заданий</a></li>
+                <li><a href="">Календарь задач</a></li>
             </ul>
             <div class="absolute bottom-3 left-0 w-full">
                 <a href="{{route('task.add')}}" class="bg-green-500 px-10 py-1 block w-full hover:bg-green-400 transition-colors ">Добавить задачу</a>

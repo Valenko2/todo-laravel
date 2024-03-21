@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Task;
+namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
 use App\Models\Task;
@@ -10,7 +10,7 @@ class AddController extends Controller
 {
     public function __invoke()
     {
-        return view('createTask');
+        return view('Category.create');
     }
 
 

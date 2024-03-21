@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
 Route::group(['namespace' => 'App\Http\Controllers\Task'], function ()
 {
     Route::get('/', 'ViewController')->name('tasks');
@@ -14,9 +13,18 @@ Route::group(['namespace' => 'App\Http\Controllers\Task'], function ()
     Route::get('/{task}/update', 'EditController')->name('task.edit');
     Route::post('/{task}/task/update', 'UpdateController')->name('task.update');
 
-    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
 });
 
+Route::group(['namespace' => 'App\Http\Controllers\Category'], function ()
+{
+    Route::get('/categories', 'ViewController')->name('categories');
 
+    Route::get('/category/add', 'AddController')->name('category.add');
+    Route::post('/category/create', 'CreateController')->name('category.create');
+
+    Route::get('category/{category}/delete', 'DeleteController')->name('category.delete');
+
+    Route::get('category/{category}/task', 'TaskCategoryViewController')->name('tasks.category');
+});
 

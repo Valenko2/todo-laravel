@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Task;
+namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
-use App\Models\Task;
-use Illuminate\Http\Request;
+use App\Models\Category;
+
 
 class DeleteController extends Controller
 {
-    public function __invoke(Task $task)
+    public function __invoke(Category $category)
     {
-        $task->delete();
-        return redirect('/');
+        $category->delete();
+        return redirect()->route('categories');
     }
 
 

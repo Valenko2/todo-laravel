@@ -1,9 +1,9 @@
 
 @extends('components.header')
 @section('content')
-    <h2 class="text-center text-3xl mt-5 mb-5">Мои задачи</h2>
+    <h2 class="text-center text-4xl mt-5 mb-5">Мои задачи</h2>
     @foreach($tasks as $task)
-            <div class="border-2 border-slate-700  h-32 w-full p-3 rounded-xl relative mt-3 " id="{{$task->id}}">
+            <div class="border-2 border-slate-700  h-36 w-full p-3 rounded-xl relative mt-3 " id="{{$task->id}}">
                 <h3 class="text-xl inline-block">{{$task->title}}</h3>
                 <a href="{{route('task.edit', $task->id)}}" class="inline-block absolute top-4 right-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -12,8 +12,11 @@
                     </svg>
                 </a>
                 <p class="text-slate-400 ">{{$task->desc}}</p>
-                <div class="mt-5 ">
-                    <button class="but" onclick="doneTask({{$task->id}})">
+                <p class="text-slate-400 opacity-60"> Категория:
+                    <span class="text-blue-400">{{$task->category->title ?? 'Без категории' }}</span>
+                 </p>
+                 <div class="mt-4 ">
+                     <button class="but" onclick="doneTask({{$task->id}})">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                              class="w-7 h-7 text-green-500 bg-green-800 text-xl rounded hover:bg-green-600 transition-colors">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
@@ -27,6 +30,7 @@
                     </a>
                 </div>
             </div>
+
     <script>
         function doneTask(id) {
             let div = document.getElementById(id);

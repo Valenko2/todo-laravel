@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Task;
+namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
-use App\Models\Task;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CreateController extends Controller
@@ -13,14 +13,11 @@ class CreateController extends Controller
 
         request()->validate([
             'title' => ['required', 'string', 'max:40'],
-            'desc' => ['required','string','min:5']
         ]);
-        Task::create([
+        Category::create([
             'title'=> request()->title,
-            'desc' => request()->desc,
-            'hard' => 2
         ]);
-        return redirect(route('tasks'));
+        return redirect(route('categories'));
     }
 
 }
