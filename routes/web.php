@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-Route::group(['namespace' => 'App\Http\Controllers\Task'], function ()
+Route::group(['namespace' => 'App\Http\Controllers\Task', 'middleware' => 'auth'], function ()
 {
     Route::get('/', 'ViewController')->name('tasks');
 
@@ -16,7 +16,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Task'], function ()
 
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Category'], function ()
+Route::group(['namespace' => 'App\Http\Controllers\Category', 'middleware' => 'auth'], function ()
 {
     Route::get('/categories', 'ViewController')->name('categories');
 
@@ -26,5 +26,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Category'], function ()
     Route::get('category/{category}/delete', 'DeleteController')->name('category.delete');
 
     Route::get('category/{category}/task', 'TaskCategoryViewController')->name('tasks.category');
+});
+
+Route::group(['namespace' => 'App\Http\Controllers\Register'], function ()
+{
+    Route::get('/register', 'RegisterController')->name('register');
+    Route::post('/register/create', 'CreateUserController')->name('create.register');
 });
 

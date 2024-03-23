@@ -2,17 +2,17 @@
 @section('main')
 <main>
    <h2 class="text-5xl mt-10 text-center text-white m-5 ">Добавление задачи</h2>
-    <div class="h-30 bg-slate-600 w-100  w-200 shadow-lg max-w-sm mx-auto flex items-center space-x-4 p-5">
-        <form action="{{route('task.create')}}" method="post" class="w-full">
+    <div class="h-30 bg-slate-600 w-100  w-200 shadow-lg max-w-sm mx-auto flex items-center space-x-4 p-5 ">
+        <form action="{{route('task.create')}}" method="post" class=" items-center">
             @csrf
             <input type="text" placeholder="Название" name="title"
-                   class=" {{$errors->has('title') ? 'placeholder-red-400 border-b-red-400' : 'placeholder-slate-500'}}"
+                   class="task-create {{$errors->has('title') ? 'task-err' : 'placeholder-slate-500'}} "
                    value="{{old(('title'))}}">
             @error('title')
                 <label class="err">{{$message}}</label>
             @enderror
             <input type="text" placeholder="Описание" name="desc"
-                   class=" {{$errors->has('desc') ? 'placeholder-red-400 border-b-red-400' : 'placeholder-slate-500'}}"
+                   class="task-create {{$errors->has('desc') ? 'task-err' : 'placeholder-slate-500'}}"
                    value="{{old(('desc'))}}">
             @error('desc')
                 <label class="err">{{$message}}</label>
