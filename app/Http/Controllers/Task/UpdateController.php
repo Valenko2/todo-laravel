@@ -12,12 +12,17 @@ class UpdateController extends Controller
     {
         request()->validate([
             'title' => ['required', 'string', 'max:40'],
-            'desc' => ['required','string','min:5']
+            'desc' => ['required','string','min:5'],
+            'category' => ['required']
         ]);
-        $task->update([
-            'title' => request()->title,
+        $data = [
+            'title'=> request()->title,
             'desc' => request()->desc,
-        ]);
+        ];
+
+        if(request()->category != 0)  $data['category_id'] = request()->category;
+
+        $task->update($data);
         return redirect('/');
     }
 

@@ -6,7 +6,7 @@
         <form action="{{route('category.create')}}" method="post" class="w-full">
             @csrf
             <input type="text" placeholder="Название" name="title"
-                   class=" {{$errors->has('title') ? 'placeholder-red-400 border-b-red-400' : 'placeholder-slate-500'}}"
+                   class="task-create {{$errors->has('title') ? 'task-err' : 'placeholder-slate-500'}}"
                    value="{{old(('title'))}}">
             @error('title')
                 <label class="text-red-400 text-sm">{{$message}}</label>

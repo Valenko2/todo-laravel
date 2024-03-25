@@ -13,9 +13,6 @@
                 </svg>
             </a>
             <p class="text-slate-400 ">{{$task->desc}}</p>
-            <p class="text-slate-400 opacity-60"> Категория:
-                <span class="text-blue-400">{{$task->category->title ?? 'Без категории' }}</span>
-            </p>
             <div class="mt-4 ">
                 <button class="but" onclick="doneTask({{$task->id}})">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

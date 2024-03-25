@@ -16,5 +16,9 @@ class Task extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+    public function user()
+    {
+        return $this->hasMany(User::class, 'user_id');
+    }
 
 }

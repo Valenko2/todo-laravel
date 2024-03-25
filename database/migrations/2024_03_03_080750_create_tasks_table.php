@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamps();
             $table->index('category_id', 'task_category_idx');
             $table->foreign('category_id', 'task_category_fk')->on('categories')->references('id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id', 'task_user_fk')->on('users')->references('id');
             $table->softDeletes();
         });
     }

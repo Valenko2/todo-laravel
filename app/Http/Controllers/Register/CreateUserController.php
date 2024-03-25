@@ -15,7 +15,7 @@ class CreateUserController extends Controller
     {
 
         request()->validate([
-            'login' => ['required', 'string', 'min:3', 'max:40'],
+            'login' => ['required', 'string', 'min:3', 'max:40', 'unique:users'],
             'password' =>['required', 'string', 'min:5', 'confirmed'],
         ]);
 

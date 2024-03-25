@@ -28,9 +28,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Category', 'middleware' => 'a
     Route::get('category/{category}/task', 'TaskCategoryViewController')->name('tasks.category');
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Register'], function ()
+Route::group(['namespace' => 'App\Http\Controllers\Register', 'middleware' => 'guest'], function ()
 {
     Route::get('/register', 'RegisterController')->name('register');
     Route::post('/register/create', 'CreateUserController')->name('create.register');
+
+    Route::get('/auth', 'AuthController')->name('auth');
+    Route::post('/auth/login', 'LoginController')->name('login');
 });
+Route::get('/exit', [\App\Http\Controllers\Register\ExitController::class, 'exit'])->name('exit');
 

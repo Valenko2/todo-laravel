@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CreateController extends Controller
 {
@@ -20,6 +21,7 @@ class CreateController extends Controller
         $data = [
             'title'=> request()->title,
             'desc' => request()->desc,
+            'user_id' => Auth::user()->id,
             'hard' => 2
         ];
         if(request()->category != 0)  $data['category_id'] = request()->category;
